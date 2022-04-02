@@ -1,0 +1,20 @@
+{
+    "name": "a4smanjorg5/utilsv",
+    "description": "Utility lib",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "a4smanjorg5\\": "src/"
+        },
+        "files": ["storage.php"]
+    },
+    "authors": [
+        {
+            "name": "R Givent A Simanjorang",
+            "email": "a4smanjorg5@protonmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
