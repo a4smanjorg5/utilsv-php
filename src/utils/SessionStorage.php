@@ -15,13 +15,19 @@ class SessionStorage implements \IStorage
 {
     private static $sess;
     private static $started;
+    private $cb;
     private function __construct()
     {
     }
-    static function load() {
+    static function load($callback) {
         if (defined('NOSESS'))
             trigger_error(sprintf("Call to undefined method %s. Please don't define NOSESS",
              __METHOD__), E_USER_ERROR);
+        if (!assert(is_callable($callback), 'enqueue callback'))
+            return false;
+        $cb = $this -> cb;
+        $cb[] = $callback;
+        $this -> cb = $callback;
         if (!self::$sess)
             self::$sess = new SessionStorage();
         return self::$sess;
@@ -56,7 +62,11 @@ class SessionStorage implements \IStorage
         if (self::$started)
             return self::$started;
         self::$started = session_start();
-        return assert(self::$started, 'starting session');
+        if (!assert(self::$started, 'starting session'))
+            return false;
+        foreach ($this -> cb as $cb)
+            $cb($this);
+        return true;
     }
 }
 ?>
