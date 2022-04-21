@@ -14,6 +14,7 @@ namespace a4smanjorg5\Utils;
 class SessionStorage implements \IStorage
 {
     private static $sess;
+    private static $started;
     private function __construct()
     {
     }
@@ -21,28 +22,41 @@ class SessionStorage implements \IStorage
         if (defined('NOSESS'))
             trigger_error(sprintf("Call to undefined method %s. Please don't define NOSESS",
              __METHOD__), E_USER_ERROR);
-        if (!self::$sess) {
-            session_start();
+        if (!self::$sess)
             self::$sess = new SessionStorage();
-        }
         return self::$sess;
     }
     function getItem($keyName) {
-        return $_SESSION[$keyName];
+        if (self::start())
+            return $_SESSION[$keyName];
     }
     function setItem($keyName, $keyValue) {
-        $_SESSION[$keyName] = $keyValue;
-        return true;
+        if (self::start()) {
+            $_SESSION[$keyName] = $keyValue;
+            return true;
+        }
+        return false;
     }
     function removeItem($keyName) {
-        unset($_SESSION[$keyName]);
-        return true;
+        if (self::start()) {
+            unset($_SESSION[$keyName]);
+            return true;
+        }
+        return false;
     }
     function clear() {
-        return session_unset();
+        if (self::start())
+            return session_unset();
     }
     function count() {
-        return count($_SESSION);
+        if (self::start())
+            return count($_SESSION);
+    }
+    private static function start() {
+        if (self::$started)
+            return self::$started;
+        self::$started = session_start();
+        return assert(self::$started, 'starting session');
     }
 }
 ?>
