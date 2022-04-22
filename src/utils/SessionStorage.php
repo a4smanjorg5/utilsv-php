@@ -23,7 +23,7 @@ class SessionStorage implements \IStorage
         if (defined('NOSESS'))
             trigger_error(sprintf("Call to undefined method %s. Please don't define NOSESS",
              __METHOD__), E_USER_ERROR);
-        assert(is_callable($callback), 'enqueue callback')
+        assert(is_callable($callback), 'enqueue callback');
         if (!self::$sess)
             self::$sess = new SessionStorage();
         $me = self::$sess;
