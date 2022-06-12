@@ -5,9 +5,9 @@
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
-            "a4smanjorg5\\Utils\\": "src/utils/"
+            "a4smanjorg5\\": "src/"
         },
-        "files": ["src/storage.php"]
+        "files": ["obliged/storage.php"]
     },
     "authors": [
         {
