@@ -18,6 +18,7 @@ class SessionStorage implements \IStorage
     private $cb;
     private function __construct()
     {
+        $this -> cb = array();
     }
     static function load($callback) {
         if (defined('NOSESS'))
@@ -28,9 +29,9 @@ class SessionStorage implements \IStorage
             self::$sess = new SessionStorage();
         $me = self::$sess;
         if (is_callable($callback)) {
-            $cb = $me -> cb;
-            $cb[] = $callback;
-            $me -> cb = $callback;
+            if (is_null($me -> $cb))
+                $callback($me);
+            else $me -> cb[] = $callback;
         }
         return $me;
     }
@@ -66,8 +67,9 @@ class SessionStorage implements \IStorage
         self::$started = session_start();
         if (!assert(self::$started, 'starting session'))
             return false;
-        foreach ($this -> cb as $cb)
-            $cb($this);
+        $me = self::$sess;
+        foreach ($me -> cb as $cb)
+            $cb($me);
         return true;
     }
 }
