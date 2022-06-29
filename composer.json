@@ -9,7 +9,7 @@
         },
         "files": [
             "obliged/storage.php",
-            "obliged/Object.php",
+            "obliged/Object.php"
         ]
     },
     "authors": [
