@@ -70,6 +70,7 @@ class SessionStorage implements \IStorage
         $me = self::$sess;
         foreach ($me -> cb as $cb)
             $cb($me);
+        $me -> cb = null;
         return true;
     }
 }
