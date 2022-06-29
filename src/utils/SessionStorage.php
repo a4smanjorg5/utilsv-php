@@ -29,7 +29,7 @@ class SessionStorage implements \IStorage
             self::$sess = new SessionStorage();
         $me = self::$sess;
         if (is_callable($callback)) {
-            if (is_null($me -> $cb))
+            if (is_null($me -> cb))
                 $callback($me);
             else $me -> cb[] = $callback;
         }
