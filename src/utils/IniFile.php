@@ -14,4 +14,4 @@ namespace a4smanjorg5\Utils;
 class IniFile implements \Object
 {
 }
-?>
+

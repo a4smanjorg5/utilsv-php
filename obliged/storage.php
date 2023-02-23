@@ -8,4 +8,3 @@ interface IStorage
     function count();
 }
 
-?>

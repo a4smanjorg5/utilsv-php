@@ -9,7 +9,6 @@
         },
         "files": [
             "obliged/storage.php",
-            "obliged/Object.php",
             "obliged/helpers.php"
         ]
     },

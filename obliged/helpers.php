@@ -8,4 +8,4 @@ function app_model($modelName, $newInstance = true) {
         else return $model;
     }
 }
-?>
+

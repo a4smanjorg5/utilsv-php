@@ -10,4 +10,4 @@ class Object {
         return get_parent_class($this);
     }
 }
-?>
+
