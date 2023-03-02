@@ -1,6 +1,6 @@
 <?php
 
-namespace GenrWork\Tim;
+namespace a4smanjorg5\Utils;
 
 use JsonSerializable;
 

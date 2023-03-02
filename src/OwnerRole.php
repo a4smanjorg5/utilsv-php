@@ -1,6 +1,6 @@
 <?php
 
-namespace GenrWork\Tim;
+namespace a4smanjorg5\Utils;
 
 class OwnerRole extends Role
 {
@@ -11,7 +11,6 @@ class OwnerRole extends Role
      */
     public function __construct($name = 'Owner')
     {
-        $p = \GenrWork\Tim::permissions();
         parent::__construct(static::OWNER_KEY, $name, 1);
         $this->permissions = -1;
     }
